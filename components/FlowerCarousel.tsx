@@ -19,9 +19,10 @@ export default function FlowerCarouselSection() {
     currentRotation.current = rotation;
   };
 
+  const sensitivity = .6;
   const handleTouchMove = (e: React.TouchEvent) => {
     const delta = e.touches[0].clientX - startX.current;
-    setRotation(currentRotation.current + delta * 0.3);
+    setRotation(currentRotation.current + delta * sensitivity);
   };
 
   const handleSelect = (id: string) => {
