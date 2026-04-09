@@ -5,9 +5,7 @@ export default function Home() {
   return (
     <main className="w-full min-h-screen bg-emerald-50">
       <Hero />
-      <FlowerCarousel />
-
-      
+      <FlowerCarousel  />
     </main>
   );
 }
