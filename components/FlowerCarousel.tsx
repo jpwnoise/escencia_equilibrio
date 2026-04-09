@@ -216,7 +216,7 @@ export default function FlowerCarouselSection() {
             </div>
 
             <a
-              href={`https://wa.me/52XXXXXXXXXX?text=${encodeURIComponent(
+              href={`https://wa.me/3312809575?text=${encodeURIComponent(
                 `Hola, quiero solicitar un arreglo con estas flores:\n\n${selectedData
                   .map((f) => `• ${f.spanish}`)
                   .join("\n")}`
