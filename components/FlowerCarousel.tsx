@@ -162,15 +162,16 @@ export default function FlowerCarouselSection() {
               </button>
             </div>
 
-            <p
-              className={`text-xs mb-3 transition-all duration-300 ${
-                limitHit
-                  ? "text-red-500 scale-110 animate-shake"
-                  : "text-emerald-700"
-              }`}
-            >
+            {limitHit &&
+            <p className={`text-xs mb-3 transition-all duration-300 text-red-500 scale-110 animate-shake m-3`}>
               Has alcanzado el máximo de 7 flores 🌿
             </p>
+            }
+            { selected.length < 7 &&
+            <p className={`text-xs mb-3 transition-all duration-300 text-emerald-500 scale-110 animate-shake m-3`}>
+              Elige 7 flores
+            </p>
+            }
 
             <ul className="flex flex-col gap-2 max-h-40 md:max-h-80 overflow-y-auto pr-1">
               {selectedData.map((flower) => (
