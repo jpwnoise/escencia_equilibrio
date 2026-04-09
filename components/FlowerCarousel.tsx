@@ -10,19 +10,24 @@ export default function FlowerCarouselSection() {
   const [rotation, setRotation] = useState(0);
   const [limitHit, setLimitHit] = useState(false);
   const [minimized, setMinimized] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
 
   const startX = useRef(0);
-  const currentRotation = useRef(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    setIsTouching(true);
     startX.current = e.touches[0].clientX;
-    currentRotation.current = rotation;
   };
 
-  const sensitivity = .6;
   const handleTouchMove = (e: React.TouchEvent) => {
     const delta = e.touches[0].clientX - startX.current;
-    setRotation(currentRotation.current + delta * sensitivity);
+
+    setRotation((prev) => prev + delta * 0.4);
+    startX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    setIsTouching(false);
   };
 
   const handleSelect = (id: string) => {
@@ -50,9 +55,13 @@ export default function FlowerCarouselSection() {
         className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[420px] flex items-center justify-center [perspective:1200px] touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <div
-          className="relative w-[110px] h-[220px] sm:w-[160px] sm:h-[110px] md:w-[110px] md:h-[260px] transition-transform duration-700"
+          className={`
+            relative w-[110px] h-[220px] sm:w-[160px] sm:h-[110px] md:w-[110px] md:h-[260px]
+            ${isTouching ? "" : "transition-transform duration-500"}
+          `}
           style={{
             transform: `rotateY(${rotation}deg)`,
             transformStyle: "preserve-3d",
