@@ -48,7 +48,7 @@ export default function FlowerCarouselSection() {
   const selectedData = flowers.filter((f) => selected.includes(f.id));
 
   return (
-    <section id="mix" className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-b from-orange-100 via-gray-200 to-white">
+    <section id="mix" className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-b from-orange-100/80 via-gray-200 to-white/80">
 
       {/* 🎠 CARRUSEL */}
       <div

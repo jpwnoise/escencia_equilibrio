@@ -15,7 +15,7 @@ export default function Hero() {
     };
   };
   return (
-    <div className="relative w-full h-[90vh] flex items-center justify-center bg-gradient-to-b from-white via-white to-orange-100 overflow-hidden">
+    <div className="relative w-full h-[90vh] flex items-center justify-center bg-gradient-to-b from-white/80 via-white/80 to-orange-100/80 overflow-hidden">
       
       <section >
         {/* Background soft blur shapes */}
