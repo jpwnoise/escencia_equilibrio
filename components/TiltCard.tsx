@@ -19,7 +19,7 @@ export default function TiltCard({ children, className }: TiltCardProps) {
       gyroscope={true}
       className={`rounded-2xl ${className}`}
     >
-      <div className="bg-red/90 backdrop-blur-2xl rounded-2xl shadow-lg p-6 border border-emerald-100">
+      <div className="bg-gradient-to-b from-white/90 to-emerald-50/50 backdrop-blur-2xl rounded-2xl shadow-lg p-6 border border-emerald-200/60">
         {children}
       </div>
     </Tilt>

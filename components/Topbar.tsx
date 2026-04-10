@@ -20,10 +20,10 @@ export default function Topbar() {
 
   return (
     <>
-      <div className="shadow flex justify-between items-center bg-gradient-to-r from-gray-100/50 to-gray-200/50 border border-gray-200 p-2 text-gray-500 sticky top-0 z-30 backdrop-blur-lg">
+      <div className="shadow flex justify-between items-center bg-gradient-to-r from-emerald-50/70 to-teal-50/70 border border-emerald-200/50 p-2 text-emerald-700 sticky top-0 z-30 backdrop-blur-lg">
         {/* Logo */}
-        <div className="font-bold text-lg" style={{ fontFamily: 'var(--font-poppins)' }}>
-          Mi Sitio
+        <div className="font-bold text-lg bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-poppins)' }}>
+          Esencia y Equilibrio
         </div>
 
         {/* Menú desktop */}
@@ -62,7 +62,7 @@ export default function Topbar() {
             onClick={() => setOpen(false)}
           />
 
-          <div className="fixed top-[52px] left-0 w-full backdrop-blur-2xl bg-white/30 border border-gray-200 shadow-md flex flex-col md:hidden z-40">
+          <div className="fixed top-[52px] left-0 w-full backdrop-blur-2xl bg-emerald-50/80 border border-emerald-200/50 shadow-md flex flex-col md:hidden z-40">
             {navitems.map((item, index) => (
               <div
                 key={index}

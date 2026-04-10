@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { flowers } from "@/data/flowers";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -48,96 +49,109 @@ export default function FlowerCarouselSection() {
   const selectedData = flowers.filter((f) => selected.includes(f.id));
 
   return (
-    <section id="mix" className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-b from-orange-100/80 via-gray-200 to-white/80">
+    <section id="mix" className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
 
       {/* 🎠 CARRUSEL */}
-      <div
-        className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[600px] flex items-center justify-center [perspective:2100px] touch-pan-y"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
+      <div className="relative w-full h-[340px] sm:h-[380px] md:h-[600px] flex items-center justify-center">
+        {/* Horizontal fade mask - left and right */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-r from-emerald-50 via-emerald-50/80 to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 md:w-48 z-10 bg-gradient-to-l from-teal-50 via-teal-50/80 to-transparent" />
+        
+        {/* Carousel container */}
         <div
-          className={`
-            relative w-[110px] h-[220px] sm:w-[160px] sm:h-[110px] md:w-[110px] md:h-[260px]
-            ${isTouching ? "" : "transition-transform duration-500"}
-          `}
-          style={{
-            transform: `rotateY(${rotation}deg)`,
-            transformStyle: "preserve-3d",
-          }}
+          className="relative w-full overflow-hidden h-full flex items-center justify-center [perspective:2100px] touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          {flowers.map((flower, index) => {
-            const angle = (360 / flowers.length) * index;
-            const isSelected = selected.includes(flower.id);
+          <div
+            className={`
+              relative w-[110px] h-[220px] sm:w-[160px] sm:h-[110px] md:w-[110px] md:h-[260px]
+              ${isTouching ? "" : "transition-transform duration-500"}
+            `}
+            style={{
+              transform: `rotateY(${rotation}deg)`,
+              transformStyle: "preserve-3d",
+            }}
+          >
+            {flowers.map((flower, index) => {
+              const angle = (360 / flowers.length) * index;
+              const isSelected = selected.includes(flower.id);
 
-            return (
-              <div
-                key={flower.id}
-                className="absolute top-0 left-0 w-full h-full"
-                style={{
-                  transform: `rotateY(${angle}deg) translateZ(700px)`,
-                }}
-              >
-                <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} scale={1}>
-                  <div
-                    onClick={() => handleSelect(flower.id)}
-                    className={`relative rounded-2xl p-3 sm:p-4 h-full flex flex-col items-center justify-center cursor-pointer shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-gray-100 border ${
-                      isSelected
-                        ? "border-emerald-400"
-                        : "border-orange-300"
-                    }`}
-                  >
-                    <img
-                      src={flower.img}
-                      alt={flower.spanish}
-                      className="w-full h-20 sm:h-24 md:h-28 object-contain mb-2 sm:mb-3"
-                    />
+              return (
+                <div
+                  key={flower.id}
+                  className="absolute top-0 left-0 w-full h-full"
+                  style={{
+                    transform: `rotateY(${angle}deg) translateZ(700px)`,
+                  }}
+                >
+                  <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} scale={1}>
+                    <div
+                      onClick={() => handleSelect(flower.id)}
+                      className={`relative rounded-2xl p-3 sm:p-4 h-full flex flex-col items-center justify-center cursor-pointer shadow-xl transition-all duration-300 bg-gradient-to-b from-white to-emerald-50 backdrop-blur-sm border-2 ${
+                        isSelected
+                          ? "border-emerald-600 shadow-emerald-200/50"
+                          : "border-emerald-400 shadow-emerald-100/30"
+                      }`}
+                    >
+                      <img
+                        src={flower.img}
+                        alt={flower.spanish}
+                        className="w-full h-20 sm:h-24 md:h-28 object-contain mb-2 sm:mb-3"
+                      />
 
-                    <h3 className="text-[11px] sm:text-xs md:text-sm font-semibold text-emerald-900 text-center">
-                      {flower.name}
-                    </h3>
+                      <h3 className="text-[11px] sm:text-xs md:text-sm font-semibold text-emerald-900 text-center">
+                        {flower.name}
+                      </h3>
 
-                    <p className="mt-1 text-[10px] sm:text-xs text-emerald-700 text-center line-clamp-8">
-                      {flower.use}
-                    </p>
+                      <p className="mt-1 text-[10px] sm:text-xs text-emerald-700 text-center line-clamp-8">
+                        {flower.use}
+                      </p>
 
-                    {isSelected && (
-                      <div className="mt-1 text-[10px] sm:text-xs text-emerald-700 font-medium">
-                        ✔ Añadida
-                      </div>
-                    )}
-                  </div>
-                </Tilt>
-              </div>
-            );
-          })}
+                      {isSelected && (
+                        <div className="mt-1 text-[10px] sm:text-xs text-emerald-700 font-medium">
+                          ✔ Añadida
+                        </div>
+                      )}
+                    </div>
+                  </Tilt>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* 🎮 CONTROLES (solo desktop) */}
       <div className="hidden md:flex gap-4 text-xl md:text-2xl">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(16, 185, 129, 0.3)" }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => setRotation(rotation + 30)}
-          className="px-4 md:px-5 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl"
+          className="px-4 md:px-5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-lg"
         >
           <FaArrowLeft />
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(16, 185, 129, 0.3)" }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => setRotation(rotation - 30)}
-          className="px-4 md:px-5 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl"
+          className="px-4 md:px-5 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl shadow-lg"
         >
           <FaArrowRight />
-        </button>
+        </motion.button>
       </div>
 
       {/* 🌼 PANEL SELECCIÓN */}
       <div className="fixed bottom-4 right-4 md:top-1/2 md:-translate-y-1/2 md:right-6 z-50">
 
         {minimized ? (
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setMinimized(false)}
-            className="relative w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-xl"
+            className="relative w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white flex items-center justify-center shadow-xl shadow-emerald-500/30"
           >
             🌼
             {selected.length > 0 && (
@@ -145,9 +159,9 @@ export default function FlowerCarouselSection() {
                 {selected.length}
               </span>
             )}
-          </button>
+          </motion.button>
         ) : (
-          <div className="w-[90vw] max-w-xs md:w-72 bg-white border border-emerald-200 rounded-2xl shadow-xl p-4">
+          <div className="w-[90vw] max-w-xs md:w-72 bg-white/90 backdrop-blur-xl border border-emerald-200 rounded-2xl shadow-xl shadow-emerald-100/30 p-4">
 
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-base md:text-lg font-semibold text-emerald-900">
@@ -156,7 +170,7 @@ export default function FlowerCarouselSection() {
 
               <button
                 onClick={() => setMinimized(true)}
-                className="text-xs text-emerald-600"
+                className="text-xs text-emerald-600 hover:text-emerald-700"
               >
                 minimizar
               </button>
@@ -168,7 +182,7 @@ export default function FlowerCarouselSection() {
             </p>
             }
             { selected.length < 7 &&
-            <p className={`text-xs mb-3 transition-all duration-300 text-emerald-500 scale-110 animate-shake m-3`}>
+            <p className={`text-xs mb-3 transition-all duration-300 text-emerald-600 scale-110 animate-shake m-3`}>
               Elige 7 flores
             </p>
             }
@@ -178,7 +192,7 @@ export default function FlowerCarouselSection() {
                 <li
                   key={flower.id}
                   onClick={() => handleSelect(flower.id)}
-                  className="flex items-center justify-between text-sm text-emerald-900 cursor-pointer px-2 py-1 rounded-md hover:bg-emerald-100"
+                  className="flex items-center justify-between text-sm text-emerald-900 cursor-pointer px-2 py-1 rounded-md hover:bg-emerald-100/60 transition-colors"
                 >
                   <span>{flower.spanish}</span>
                   <span className="text-emerald-500">✕</span>
@@ -191,8 +205,14 @@ export default function FlowerCarouselSection() {
 
       {/* 🧾 SOLICITAR PEDIDO */}
       <div id="contact" className="w-full max-w-5xl px-4 sm:px-6 mt-10 md:mt-20">
-        <div className="bg-white/80 border border-orange-300 rounded-3xl shadow-xl p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center">
-          
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white/90 backdrop-blur-xl border border-emerald-200 rounded-3xl shadow-xl shadow-emerald-100/20 p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center"
+        >
+
           <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-lg">
             <img src="/eli.png" className="w-full h-full object-cover" />
           </div>
@@ -202,7 +222,7 @@ export default function FlowerCarouselSection() {
               Solicitar pedido 🌼
             </h2>
 
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 sm:p-4 mb-4 max-h-32 md:max-h-40 overflow-y-auto">
+            <div className="bg-emerald-50/80 border border-emerald-200 rounded-xl p-3 sm:p-4 mb-4 max-h-32 md:max-h-40 overflow-y-auto">
               {selectedData.length === 0 ? (
                 <p className="text-sm text-emerald-600">
                   No has seleccionado flores aún 🌿
@@ -216,19 +236,21 @@ export default function FlowerCarouselSection() {
               )}
             </div>
 
-            <a
+            <motion.a
               href={`https://wa.me/3312809575?text=${encodeURIComponent(
                 `Hola, quiero solicitar un arreglo con estas flores:\n\n${selectedData
                   .map((f) => `• ${f.name}`)
                   .join("\n")}`
               )}`}
               target="_blank"
-              className="inline-block w-full text-center px-4 py-3 bg-emerald-600 text-white rounded-xl"
+              whileHover={{ scale: 1.02, boxShadow: "0 15px 30px rgba(16, 185, 129, 0.3)" }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block w-full text-center px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl font-semibold shadow-lg"
             >
               Pedir por WhatsApp 📲
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

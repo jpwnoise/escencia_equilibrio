@@ -23,7 +23,7 @@ export default function FlowerCard({
       gyroscope={true}
       className="rounded-2xl"
     >
-      <div className="bg-red/90 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-emerald-100 h-full flex flex-col">
+      <div className="bg-gradient-to-b from-white/90 to-emerald-50/50 backdrop-blur-xl rounded-2xl shadow-lg p-6 border border-emerald-200/60 h-full flex flex-col">
         
         {/* Imagen */}
         <div className="flex justify-center mb-4">
