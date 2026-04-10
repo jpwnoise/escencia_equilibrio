@@ -59,7 +59,7 @@ export default function FlowerCarouselSection() {
         
         {/* Carousel container */}
         <div
-          className="relative w-full overflow-hidden h-full flex items-center justify-center [perspective:2100px] touch-pan-y"
+          className="relative w-full overflow-hidden h-full flex items-center justify-center [perspective:2400px] touch-pan-y"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -230,7 +230,7 @@ export default function FlowerCarouselSection() {
               ) : (
                 <ul className="text-sm text-emerald-900 space-y-1">
                   {selectedData.map((flower) => (
-                    <li key={flower.id}>• {flower.spanish}</li>
+                    <li key={flower.id}>• {flower.name}</li>
                   ))}
                 </ul>
               )}

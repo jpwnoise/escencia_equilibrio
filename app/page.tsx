@@ -8,7 +8,7 @@ export default function Home() {
     <main id="home" className="w-full min-h-screen">
       <Topbar></Topbar>
       <Hero />
-      <FlowerCarousel  />
+      <FlowerCarousel />
       <Footer></Footer>
     </main>
   );
