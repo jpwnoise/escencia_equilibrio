@@ -52,7 +52,7 @@ export default function FlowerCarouselSection() {
 
       {/* 🎠 CARRUSEL */}
       <div
-        className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[420px] flex items-center justify-center [perspective:1200px] touch-pan-y"
+        className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[420px] flex items-center justify-center [perspective:2100px] touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -76,7 +76,7 @@ export default function FlowerCarouselSection() {
                 key={flower.id}
                 className="absolute top-0 left-0 w-full h-full"
                 style={{
-                  transform: `rotateY(${angle}deg) translateZ(260px)`,
+                  transform: `rotateY(${angle}deg) translateZ(700px)`,
                 }}
               >
                 <Tilt tiltMaxAngleX={8} tiltMaxAngleY={8} scale={1}>
@@ -95,7 +95,7 @@ export default function FlowerCarouselSection() {
                     />
 
                     <h3 className="text-[11px] sm:text-xs md:text-sm font-semibold text-emerald-900 text-center">
-                      {flower.spanish}
+                      {flower.name}
                     </h3>
 
                     <p className="mt-1 text-[10px] sm:text-xs text-emerald-700 text-center line-clamp-4">
