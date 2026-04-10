@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { useRef } from "react";
+import Topbar from "./Topbar";
+import { div } from "framer-motion/client";
 
 export default function Hero() {
 
@@ -13,8 +14,10 @@ export default function Hero() {
       flowerCarouselRef.current.scrollIntoView({ behavior: "smooth" });
     };
   };
-    return (
-      <section className="relative w-full h-[90vh] flex items-center justify-center bg-gradient-to-b from-white via-white to-orange-100 overflow-hidden">
+  return (
+    <div className="relative w-full h-[90vh] flex items-center justify-center bg-gradient-to-b from-white via-white to-orange-100 overflow-hidden">
+      
+      <section >
         {/* Background soft blur shapes */}
 
         <div className="relative z-10 max-w-3xl text-center px-6">
@@ -24,6 +27,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-bold text-emerald-900 leading-tight"
+            style={{ fontFamily: 'var(--font-poppins)' }}
           >
             Esencia y Equilibrio
           </motion.h1>
@@ -46,7 +50,7 @@ export default function Hero() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mt-10 flex justify-center gap-4"
           >
-            
+
           </motion.div>
         </div>
 
@@ -59,5 +63,6 @@ export default function Hero() {
           ↓ Explora tu bienestar
         </motion.div>
       </section>
-    );
-  }
+    </div>
+  );
+}

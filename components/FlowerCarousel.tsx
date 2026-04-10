@@ -48,11 +48,11 @@ export default function FlowerCarouselSection() {
   const selectedData = flowers.filter((f) => selected.includes(f.id));
 
   return (
-    <section className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-b from-orange-100 via-gray-200 to-white">
+    <section id="mix" className="w-full overflow-x-hidden py-16 md:py-24 flex flex-col items-center gap-10 md:gap-14 bg-gradient-to-b from-orange-100 via-gray-200 to-white">
 
       {/* 🎠 CARRUSEL */}
       <div
-        className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[420px] flex items-center justify-center [perspective:2100px] touch-pan-y"
+        className="relative w-full overflow-hidden h-[340px] sm:h-[380px] md:h-[600px] flex items-center justify-center [perspective:2100px] touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -98,7 +98,7 @@ export default function FlowerCarouselSection() {
                       {flower.name}
                     </h3>
 
-                    <p className="mt-1 text-[10px] sm:text-xs text-emerald-700 text-center line-clamp-4">
+                    <p className="mt-1 text-[10px] sm:text-xs text-emerald-700 text-center line-clamp-8">
                       {flower.use}
                     </p>
 
@@ -190,7 +190,7 @@ export default function FlowerCarouselSection() {
       </div>
 
       {/* 🧾 SOLICITAR PEDIDO */}
-      <div className="w-full max-w-5xl px-4 sm:px-6 mt-10 md:mt-20">
+      <div id="contact" className="w-full max-w-5xl px-4 sm:px-6 mt-10 md:mt-20">
         <div className="bg-white/80 border border-orange-300 rounded-3xl shadow-xl p-4 sm:p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 items-center">
           
           <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl overflow-hidden shadow-lg">
