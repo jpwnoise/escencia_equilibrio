@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Escencia y Equilibrio",
     images: [
       {
-        url: "https://escenciaequilibrio.vercel.app/og-image-3.png",
+        url: "https://escenciaequilibrio.vercel.app/og-image-3.jpg",
         width: 1200,
         height: 630,
         alt: "Terapias de Flores de Bach - Escencia y Equilibrio",
